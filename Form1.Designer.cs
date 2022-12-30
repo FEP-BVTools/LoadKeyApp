@@ -34,7 +34,6 @@
             this.ComPort_CB2 = new System.Windows.Forms.ComboBox();
             this.ComPort_CB3 = new System.Windows.Forms.ComboBox();
             this.ComPort_CB4 = new System.Windows.Forms.ComboBox();
-            this.GetVersion_BT1 = new System.Windows.Forms.Button();
             this.Reboot_BT1 = new System.Windows.Forms.Button();
             this.Browse_BT1 = new System.Windows.Forms.Button();
             this.Start_BT1 = new System.Windows.Forms.Button();
@@ -64,9 +63,6 @@
             this.DISC2 = new System.Windows.Forms.Button();
             this.DISC3 = new System.Windows.Forms.Button();
             this.DISC4 = new System.Windows.Forms.Button();
-            this.GetVersion_BT2 = new System.Windows.Forms.Button();
-            this.GetVersion_BT3 = new System.Windows.Forms.Button();
-            this.GetVersion_BT4 = new System.Windows.Forms.Button();
             this.Reboot_BT2 = new System.Windows.Forms.Button();
             this.Reboot_BT3 = new System.Windows.Forms.Button();
             this.Reboot_BT4 = new System.Windows.Forms.Button();
@@ -123,19 +119,18 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.StatusTitle = new System.Windows.Forms.TextBox();
             this.AllInOne_Btn = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.DelayTimeSet = new System.Windows.Forms.TextBox();
             this.TreadReadyStatusCount_Lab = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.AllAPReboot_Btn = new System.Windows.Forms.Button();
+            this.GetRC531No = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,20 +186,6 @@
             this.ComPort_CB4.TabIndex = 3;
             this.ComPort_CB4.DropDown += new System.EventHandler(this.ComPort_CB4_DropDown);
             this.ComPort_CB4.TextChanged += new System.EventHandler(this.ComPort_CB4_TextChanged);
-            // 
-            // GetVersion_BT1
-            // 
-            this.GetVersion_BT1.Enabled = false;
-            this.GetVersion_BT1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.GetVersion_BT1.Location = new System.Drawing.Point(12, 20);
-            this.GetVersion_BT1.Margin = new System.Windows.Forms.Padding(2);
-            this.GetVersion_BT1.Name = "GetVersion_BT1";
-            this.GetVersion_BT1.Size = new System.Drawing.Size(89, 34);
-            this.GetVersion_BT1.TabIndex = 8;
-            this.GetVersion_BT1.Text = "GetVersion";
-            this.GetVersion_BT1.UseVisualStyleBackColor = true;
-            this.GetVersion_BT1.Visible = false;
-            this.GetVersion_BT1.Click += new System.EventHandler(this.GetVersion_BT1_Click);
             // 
             // Reboot_BT1
             // 
@@ -537,48 +518,6 @@
             this.DISC4.UseVisualStyleBackColor = true;
             this.DISC4.Click += new System.EventHandler(this.DISC4_Click);
             // 
-            // GetVersion_BT2
-            // 
-            this.GetVersion_BT2.Enabled = false;
-            this.GetVersion_BT2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.GetVersion_BT2.Location = new System.Drawing.Point(12, 58);
-            this.GetVersion_BT2.Margin = new System.Windows.Forms.Padding(2);
-            this.GetVersion_BT2.Name = "GetVersion_BT2";
-            this.GetVersion_BT2.Size = new System.Drawing.Size(89, 34);
-            this.GetVersion_BT2.TabIndex = 50;
-            this.GetVersion_BT2.Text = "GetVersion";
-            this.GetVersion_BT2.UseVisualStyleBackColor = true;
-            this.GetVersion_BT2.Visible = false;
-            this.GetVersion_BT2.Click += new System.EventHandler(this.GetVersion_BT2_Click);
-            // 
-            // GetVersion_BT3
-            // 
-            this.GetVersion_BT3.Enabled = false;
-            this.GetVersion_BT3.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.GetVersion_BT3.Location = new System.Drawing.Point(93, 20);
-            this.GetVersion_BT3.Margin = new System.Windows.Forms.Padding(2);
-            this.GetVersion_BT3.Name = "GetVersion_BT3";
-            this.GetVersion_BT3.Size = new System.Drawing.Size(89, 34);
-            this.GetVersion_BT3.TabIndex = 51;
-            this.GetVersion_BT3.Text = "GetVersion";
-            this.GetVersion_BT3.UseVisualStyleBackColor = true;
-            this.GetVersion_BT3.Visible = false;
-            this.GetVersion_BT3.Click += new System.EventHandler(this.GetVersion_BT3_Click);
-            // 
-            // GetVersion_BT4
-            // 
-            this.GetVersion_BT4.Enabled = false;
-            this.GetVersion_BT4.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.GetVersion_BT4.Location = new System.Drawing.Point(93, 58);
-            this.GetVersion_BT4.Margin = new System.Windows.Forms.Padding(2);
-            this.GetVersion_BT4.Name = "GetVersion_BT4";
-            this.GetVersion_BT4.Size = new System.Drawing.Size(89, 34);
-            this.GetVersion_BT4.TabIndex = 52;
-            this.GetVersion_BT4.Text = "GetVersion";
-            this.GetVersion_BT4.UseVisualStyleBackColor = true;
-            this.GetVersion_BT4.Visible = false;
-            this.GetVersion_BT4.Click += new System.EventHandler(this.GetVersion_BT4_Click);
-            // 
             // Reboot_BT2
             // 
             this.Reboot_BT2.Enabled = false;
@@ -735,7 +674,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(848, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(842, 24);
             this.menuStrip1.TabIndex = 75;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -755,7 +694,8 @@
             this.NoneAppMode,
             this.EraseMode,
             this.AutoErase_Mode,
-            this.RTCtestMode});
+            this.RTCtestMode,
+            this.GetRC531No});
             this.燒錄模式設定ToolStripMenuItem.Name = "燒錄模式設定ToolStripMenuItem";
             this.燒錄模式設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.燒錄模式設定ToolStripMenuItem.Text = "燒錄模式設定";
@@ -811,7 +751,7 @@
             this.BaudSetTo57600,
             this.BaudSetTo115200});
             this.ReaderApBaudSet.Name = "ReaderApBaudSet";
-            this.ReaderApBaudSet.Size = new System.Drawing.Size(180, 22);
+            this.ReaderApBaudSet.Size = new System.Drawing.Size(146, 22);
             this.ReaderApBaudSet.Text = "AP鮑率設定";
             // 
             // BaudSetTo57600
@@ -834,7 +774,7 @@
             this.BurnCodeSpeed_Slow,
             this.BurnCodeSpeed_Fast});
             this.BurnCodeBaudRateSet.Name = "BurnCodeBaudRateSet";
-            this.BurnCodeBaudRateSet.Size = new System.Drawing.Size(180, 22);
+            this.BurnCodeBaudRateSet.Size = new System.Drawing.Size(146, 22);
             this.BurnCodeBaudRateSet.Text = "燒錄速率設定";
             // 
             // BurnCodeSpeed_Slow
@@ -871,7 +811,7 @@
             this.Erase4,
             this.AllErase});
             this.eraseToolStripMenuItem.Name = "eraseToolStripMenuItem";
-            this.eraseToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.eraseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eraseToolStripMenuItem.Text = "Erase";
             this.eraseToolStripMenuItem.Visible = false;
             // 
@@ -918,7 +858,7 @@
             this.AP_Reboot_3,
             this.AP_Reboot_4});
             this.aP層重啟ToolStripMenuItem.Name = "aP層重啟ToolStripMenuItem";
-            this.aP層重啟ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.aP層重啟ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aP層重啟ToolStripMenuItem.Text = "AP層重啟";
             // 
             // AP_Reboot_1
@@ -957,7 +897,7 @@
             this.APVersionGet3,
             this.APVersionGet4});
             this.readerAP版本ToolStripMenuItem.Name = "readerAP版本ToolStripMenuItem";
-            this.readerAP版本ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.readerAP版本ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.readerAP版本ToolStripMenuItem.Text = "ReaderAP版本";
             // 
             // APVersionGet1
@@ -1119,20 +1059,6 @@
             this.AllInOne_Btn.UseVisualStyleBackColor = true;
             this.AllInOne_Btn.Click += new System.EventHandler(this.AllInOne_Btn_Click);
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.GetVersion_BT1);
-            this.groupBox5.Controls.Add(this.GetVersion_BT2);
-            this.groupBox5.Controls.Add(this.GetVersion_BT3);
-            this.groupBox5.Controls.Add(this.GetVersion_BT4);
-            this.groupBox5.Location = new System.Drawing.Point(1133, 32);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(200, 100);
-            this.groupBox5.TabIndex = 82;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "無用物件";
-            this.groupBox5.Visible = false;
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label3);
@@ -1192,16 +1118,22 @@
             this.AllAPReboot_Btn.UseVisualStyleBackColor = true;
             this.AllAPReboot_Btn.Click += new System.EventHandler(this.AllAPReboot_Btn_Click);
             // 
+            // GetRC531No
+            // 
+            this.GetRC531No.Name = "GetRC531No";
+            this.GetRC531No.Size = new System.Drawing.Size(180, 22);
+            this.GetRC531No.Text = "射頻IC序號讀取";
+            this.GetRC531No.Click += new System.EventHandler(this.射頻IC序號讀取ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(848, 615);
+            this.ClientSize = new System.Drawing.Size(842, 615);
             this.Controls.Add(this.AllAPReboot_Btn);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.AllInOne_Btn);
             this.Controls.Add(this.StatusTitle);
             this.Controls.Add(this.groupBox4);
@@ -1232,7 +1164,6 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
@@ -1245,7 +1176,6 @@
         private System.Windows.Forms.ComboBox ComPort_CB2;
         private System.Windows.Forms.ComboBox ComPort_CB3;
         private System.Windows.Forms.ComboBox ComPort_CB4;
-        private System.Windows.Forms.Button GetVersion_BT1;
         private System.Windows.Forms.Button Reboot_BT1;
         private System.Windows.Forms.Button Browse_BT1;
         private System.Windows.Forms.Button Start_BT1;
@@ -1275,9 +1205,6 @@
         private System.Windows.Forms.Button DISC2;
         private System.Windows.Forms.Button DISC3;
         private System.Windows.Forms.Button DISC4;
-        private System.Windows.Forms.Button GetVersion_BT2;
-        private System.Windows.Forms.Button GetVersion_BT3;
-        private System.Windows.Forms.Button GetVersion_BT4;
         private System.Windows.Forms.Button Reboot_BT2;
         private System.Windows.Forms.Button Reboot_BT3;
         private System.Windows.Forms.Button Reboot_BT4;
@@ -1327,7 +1254,6 @@
         private System.Windows.Forms.ToolStripMenuItem AutoErase_Mode;
         private System.Windows.Forms.ToolStripMenuItem AllErase;
         private System.Windows.Forms.Button AllInOne_Btn;
-        private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label TreadReadyStatusCount_Lab;
         private System.Windows.Forms.Label label2;
@@ -1341,6 +1267,7 @@
         private System.Windows.Forms.ToolStripMenuItem 操作說明ToolStripMenuItem;
         private System.Windows.Forms.Button AllAPReboot_Btn;
         private System.Windows.Forms.ToolStripMenuItem RTCtestMode;
+        private System.Windows.Forms.ToolStripMenuItem GetRC531No;
     }
 }
 

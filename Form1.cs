@@ -26,45 +26,67 @@ namespace LoadKeyApp
     
     public partial class Form1 : Form
     {
+        //四個線程名稱
         LoadNew LoadNew1;
         LoadNew LoadNew2;
         LoadNew LoadNew3;
         LoadNew LoadNew4;
+
         public VersionChange VersionChangeWindow = new VersionChange();
+        
+        //版本變更參數
         private string TitleVersion = "FEP TS2000 Writer_V1.4.19",ModeStatus_Str= "含AP模式",BurnCodeRate_Str="、燒錄鮑率:115200", APBaudRate_Str = "、AP鮑率:57600", AutoErase_Str = "";
 
         private bool EraseMode_bool = false,AutoEraseMode_bool=false;
 
-        int AllStartDelayTime = 1000;
-
         /*ActiveBtnManage()參數*/
         private int All_StartLoadKey = 0, All_EraseKey = 1,BtnsDisable=2,BtnsEnable=3,LoadKeyFormat=4,EraseFormat=5,AutoEraseFormat=6;
+        int AllStartDelayTime = 1000;
 
         public Form1()
         {
             InitializeComponent();
+            
             Form.CheckForIllegalCrossThreadCalls = false;
-            LoadNew1 = new LoadNew(file_box,TreadReadyStatusCount_Lab, AllInOne_Btn, Start_BT1, GetVersion_BT1, Reboot_BT1, DISC1, ComPort_CB1, serialPort1, RTB1, openFile1,ProgressBar1,Color_Lab1,Status_Lab1);
-            LoadNew2 = new LoadNew(file_box,TreadReadyStatusCount_Lab, AllInOne_Btn, Start_BT2, GetVersion_BT2, Reboot_BT2, DISC2, ComPort_CB2, serialPort2, RTB2, openFile1, ProgressBar2, Color_Lab2, Status_Lab2);
-            LoadNew3 = new LoadNew(file_box,TreadReadyStatusCount_Lab, AllInOne_Btn, Start_BT3, GetVersion_BT3, Reboot_BT3, DISC3, ComPort_CB3, serialPort3, RTB3, openFile1, ProgressBar3, Color_Lab3, Status_Lab3);
-            LoadNew4 = new LoadNew(file_box,TreadReadyStatusCount_Lab, AllInOne_Btn, Start_BT4, GetVersion_BT4, Reboot_BT4, DISC4, ComPort_CB4, serialPort4, RTB4, openFile1, ProgressBar4, Color_Lab4, Status_Lab4);
 
+            //各線程參數設定
+            LoadNew1 = new LoadNew(file_box,TreadReadyStatusCount_Lab, AllInOne_Btn, Start_BT1, Reboot_BT1, DISC1, ComPort_CB1, serialPort1, RTB1, openFile1,ProgressBar1,  Color_Lab1, Status_Lab1);
+            LoadNew2 = new LoadNew(file_box,TreadReadyStatusCount_Lab, AllInOne_Btn, Start_BT2, Reboot_BT2, DISC2, ComPort_CB2, serialPort2, RTB2, openFile1, ProgressBar2, Color_Lab2, Status_Lab2);
+            LoadNew3 = new LoadNew(file_box,TreadReadyStatusCount_Lab, AllInOne_Btn, Start_BT3, Reboot_BT3, DISC3, ComPort_CB3, serialPort3, RTB3, openFile1, ProgressBar3, Color_Lab3, Status_Lab3);
+            LoadNew4 = new LoadNew(file_box,TreadReadyStatusCount_Lab, AllInOne_Btn, Start_BT4, Reboot_BT4, DISC4, ComPort_CB4, serialPort4, RTB4, openFile1, ProgressBar4, Color_Lab4, Status_Lab4);
+
+            //使各線程共同參考的參數
             DelayTimeSet.Text = Convert.ToString(AllStartDelayTime);
 
             Start_BT1.UseVisualStyleBackColor = true;
 
+            //設定標題顯示
             this.Text = TitleVersion;
+
             StatusTitle.Text = ModeStatus_Str+ BurnCodeRate_Str+ APBaudRate_Str;
+            /*
+             *  設定模式初始狀態:
+             *  鮑率:57600
+             *  一般燒錄模式
+             *  燒錄速率轉為115200
+             *  
+             *  
+             * 
+             */
 
             BaudSetTo57600.Checked = true;
             NormalMode.Checked = true;
             BurnCodeSpeed_Fast.Checked = true;
 
+            //自動按下後觸發該元件
+
             RTCtestMode.PerformClick();
-            AutoErase_Mode.PerformClick();//自動按下
-            NoneAppMode.PerformClick();//
+            AutoErase_Mode.PerformClick();
+            NoneAppMode.PerformClick();
+
         }
 
+        //COMPort下拉觸發事件
         private void ComPort_CB1_DropDown(object sender, EventArgs e)
         {
             ComPort_CB1.Text = "";
@@ -105,7 +127,8 @@ namespace LoadKeyApp
             ComPort_CB4.Items.Remove(ComPort_CB3.Text);
             RTB4.Text = "";
         }
-
+        
+        //COMPort文字變更觸發事件
         private void ComPort_CB1_TextChanged(object sender, EventArgs e)
         {
             if (ComPort_CB1.Text != "")
@@ -187,7 +210,8 @@ namespace LoadKeyApp
 
             
         }
-
+        
+        //訊息欄文字變更觸發事件
         private void RTB1_TextChanged(object sender, EventArgs e)
         {
             if (Scroll_CB1.Checked == true)
@@ -239,23 +263,7 @@ namespace LoadKeyApp
             RTB4.Clear();
         }
 
-        private void GetVersion_BT1_Click(object sender, EventArgs e)
-        {
-            LoadNew1.GetVersion();
-        }
-        private void GetVersion_BT2_Click(object sender, EventArgs e)
-        {
-            LoadNew2.GetVersion();
-        }
-        private void GetVersion_BT3_Click(object sender, EventArgs e)
-        {
-            LoadNew3.GetVersion();
-        }
-        private void GetVersion_BT4_Click(object sender, EventArgs e)
-        {
-            LoadNew4.GetVersion();
-        }
-
+        //啟動鍵
         private void Start_BT1_Click(object sender, EventArgs e)
         {
             AllInOne_Btn.Enabled = false;
@@ -327,6 +335,7 @@ namespace LoadKeyApp
             }
         }
 
+        //一鍵啟動鍵
         private void AllInOne_Btn_Click(object sender, EventArgs e)
         {
             ActiveBtnManage(BtnsDisable);
@@ -343,7 +352,7 @@ namespace LoadKeyApp
         }
 
 
-
+        //LN後的重啟鍵
         private void Reboot_BT1_Click(object sender, EventArgs e)
         {
             LoadNew1.RebootInLoadNew();
@@ -361,6 +370,7 @@ namespace LoadKeyApp
             LoadNew4.RebootInLoadNew();
         }
 
+        //連線中斷鍵
         private void DISC1_Click(object sender, EventArgs e)
         {
             if (LoadNew1.LoadStatus == 12)
@@ -407,10 +417,6 @@ namespace LoadKeyApp
             
         }
 
-
-
-
-
         private void Browse_BT1_Click(object sender, EventArgs e)
         {
             ChangeToNormalMode();
@@ -451,6 +457,7 @@ namespace LoadKeyApp
             if (MessageBox.Show("真的要關閉程式嗎？", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 e.Cancel = false;  //關閉視窗
+
                 Environment.Exit(0);
             }
             else
@@ -723,6 +730,28 @@ LoadNew4.GetAPVersion();
             }
         }
 
+        private void 射頻IC序號讀取ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (GetRC531No.Checked)
+            {
+                GetRC531No.Checked = false;
+
+                LoadNew1.CheckRC531NoMode = false;
+                LoadNew2.CheckRC531NoMode = false;
+                LoadNew3.CheckRC531NoMode = false;
+                LoadNew4.CheckRC531NoMode = false;
+            }
+            else
+            {
+                GetRC531No.Checked = true;
+
+                LoadNew1.CheckRC531NoMode = true;
+                LoadNew2.CheckRC531NoMode = true;
+                LoadNew3.CheckRC531NoMode = true;
+                LoadNew4.CheckRC531NoMode = true;
+            }
+        }
+
         private void AutoErase_Mode_Click(object sender, EventArgs e)
         {
             if (AutoErase_Mode.Checked)
@@ -781,7 +810,6 @@ LoadNew4.GetAPVersion();
             }
 
         }
-
 
         private void BurnCodeSpeed_Slow_Click(object sender, EventArgs e)
         {
@@ -1139,13 +1167,16 @@ LoadNew4.GetAPVersion();
         byte[] SuccessReturn = { 0x10, 0x02, 0x62, 0x00, 0x00, 0x62, 0x10, 0x03 };   //傳送成功回傳值
         byte[] CAPFile = { };
 
+        //RTC前後比對用
+        byte[] ReaderRTC1, ReaderRTC2;
+
         public int LoadStatus = 0,RTCTestStatus=0,APBuadRate=57600, EncodingType = 65001;
         int Position = 0, Count = 0, TimeOut_Counter = 0;
         bool LoadNewAlterVersion = true;//T->LN  F->Version
 
 
         public bool Start = false, Reboot_bool = false, APLoadKey=false ,StopStatus= false, BurnSlow=false, FreezeAP_bool=false, FreezeAPStatus_bool = true, JustGetAPVersion_bool=false;
-        public bool RTCCheckMode = false, NoneReaderAppMode= false, EraseMode_bool=false, AutoEraseMode_bool = false, AutoStartFlag_bool = false, ChangEncoding = false;
+        public bool CheckRC531NoMode, RTCCheckMode = false, NoneReaderAppMode= false, EraseMode_bool=false, AutoEraseMode_bool = false, AutoStartFlag_bool = false, ChangEncoding = false;
         bool REC = false;
 
         string[] CapPath = { };
@@ -1157,7 +1188,7 @@ LoadNew4.GetAPVersion();
         Thread REC_Thread, MainThread;  //接收用執行序,主要執行序
         Queue<byte> RecievedQ = new Queue<byte>(); //接收用佇列
 
-        Button Start_BT, GetVersion_BT, Reboot_BT, DisConnect_BT, Browse_BT, AllInOne_BT;
+        Button Start_BT, Reboot_BT, DisConnect_BT, AllInOne_BT;
         ComboBox ComPort_CB;
         SerialPort Serialport;
         RichTextBox RTB;
@@ -1170,13 +1201,12 @@ LoadNew4.GetAPVersion();
 
 
 
-        public LoadNew(TextBox filebox, Label threadreadystatus_lab, Button allinone_bt, Button start_bt, Button getversion_bt, Button reboot_bt, Button disc_bt, ComboBox comport_cb, SerialPort serialport, RichTextBox rtb, OpenFileDialog openfile, ProgressBar progressbar,Label color_lab,Label status_lab)
+        public LoadNew(TextBox filebox, Label threadreadystatus_lab, Button allinone_bt, Button start_bt, Button reboot_bt, Button disc_bt, ComboBox comport_cb, SerialPort serialport, RichTextBox rtb, OpenFileDialog openfile, ProgressBar progressbar,Label color_lab,Label status_lab)
         {
             AllInOne_BT = allinone_bt;
             ThreadReadyStatus_Lab = threadreadystatus_lab;
             FileBox = filebox;
             Start_BT = start_bt;
-            GetVersion_BT = getversion_bt;
             Reboot_BT = reboot_bt;
             DisConnect_BT = disc_bt;
             ComPort_CB = comport_cb;
@@ -1193,7 +1223,6 @@ LoadNew4.GetAPVersion();
         {
             LoadStatus = 0;
             Start = false;
-            GetVersion_BT.Enabled = false;
             Reboot_BT.Enabled = false;
             DisConnect_BT.Enabled = false;
             ProgressBar.Value = 0;
@@ -1223,10 +1252,6 @@ LoadNew4.GetAPVersion();
                 Start_BT.Text = "Start";
             }
             
-
-            
-            
-            
             if (TimeOut_Counter > 0)
             {
                 Color_Lab.BackColor = Color.OrangeRed;
@@ -1253,8 +1278,8 @@ LoadNew4.GetAPVersion();
 
         public void ThreadAbort()   //關閉執行敘
         {           
-            REC_Thread.Abort();
-            MainThread.Abort();
+            //REC_Thread.Abort();
+            //MainThread.Abort();
         }
 
         public void StartLoadKey()   //開始燒錄程式
@@ -1265,7 +1290,6 @@ LoadNew4.GetAPVersion();
                 Start = true;
                 Start_BT.Text = "Stop";
                 DisConnect_BT.Enabled = false;
-                GetVersion_BT.Enabled = false;
                 Reboot_BT.Enabled = false;
                 Color_Lab.BackColor = Color.Yellow;
                 Status_Lab.Text = "燒錄中...";
@@ -1342,12 +1366,10 @@ LoadNew4.GetAPVersion();
         }
         public void APReboot()
         {
-            
             Serialport.BaudRate = APBuadRate;            
             Color_Lab.BackColor = Color.LightGray;
             Status_Lab.Text = "未連接";
             LoadStatus = 14;
-
         }
         public void RebootInLoadNew()
         {
@@ -1384,6 +1406,7 @@ LoadNew4.GetAPVersion();
              *   7  等待EndTran回傳，確認燒錄狀態(黃)
              *   8  等待韌體版本號回傳(綠)
              *   81 詢問AP層版本(綠)
+             *   82 詢問射頻IC_RC531序號
              *   9  等待Reboot回傳,並判斷該重啟階段為何應用(灰or綠)
              *   10 通知燒錄程序完成,並回到自動LoadNew階段
              *   11 (未使用)
@@ -1670,7 +1693,6 @@ LoadNew4.GetAPVersion();
                                             {
                                                 Start_BT.Text = "EStart";
                                             }
-                                            GetVersion_BT.Enabled = true;
                                             Reboot_BT.Enabled = true;
                                             DisConnect_BT.Enabled = true;
                                         }
@@ -1843,32 +1865,64 @@ LoadNew4.GetAPVersion();
                         {
                             if (REC)
                             {
-                                  
-
                                 REC = false;
                                 byte[] Version = RecievedQ.ToArray();
                                 RecievedQ.Clear();
+
+                                string LoadVersionValue = Encoding.ASCII.GetString(Version, 13, 4);
+                                string BasicVersionValue = Encoding.ASCII.GetString(Version, 19, 4);//19
+                                string ULCVersionValue = Encoding.ASCII.GetString(Version, 25, 4);
+                                string CTOSVersionValue = Encoding.ASCII.GetString(Version, 31, 4);
+                                string EMVVersion = Encoding.ASCII.GetString(Version, 37, 4);
+                                string EMVExtVersionValue = Encoding.ASCII.GetString(Version, 43, 4);
+                                string FlashSizeValue = Encoding.ASCII.GetString(Version, 50, 4);
+                                string SRAMSizeValue = Encoding.ASCII.GetString(Version, 57, 4);
+                                string[] FrameWareValueArray ={LoadVersionValue, BasicVersionValue, ULCVersionValue, CTOSVersionValue,
+                                                                EMVVersion, EMVExtVersionValue, FlashSizeValue, SRAMSizeValue };
+
+
                                 //RTB.Text += "=================" + Environment.NewLine;
-                                RTB.Text = "LoadVersion = " + Encoding.ASCII.GetString(Version, 13, 4) + Environment.NewLine;
-                                RTB.Text += "Basic Version = " + Encoding.ASCII.GetString(Version, 19, 4) + Environment.NewLine;
-                                RTB.Text += "ULC Version = " + Encoding.ASCII.GetString(Version, 25, 4) + Environment.NewLine;
-                                RTB.Text += "CTOS Version = " + Encoding.ASCII.GetString(Version, 31, 4) + Environment.NewLine;
-                                RTB.Text += "EMV Version = " + Encoding.ASCII.GetString(Version, 37, 4) + Environment.NewLine;
-                                RTB.Text += "EMVExt Version = " + Encoding.ASCII.GetString(Version, 43, 4) + Environment.NewLine;
-                                RTB.Text += "Flash Size(kbyte) = " + Encoding.ASCII.GetString(Version, 50, 4) + Environment.NewLine;
-                                RTB.Text += "SRAM Size(kbyte) = " + Encoding.ASCII.GetString(Version, 57, 4) + Environment.NewLine;
+                                RTB.Text = "Load Version = " + LoadVersionValue + Environment.NewLine;
+                                RTB.Text += "Basic Version = " + BasicVersionValue + Environment.NewLine;
+                                RTB.Text += "ULC Version = " + ULCVersionValue + Environment.NewLine;
+                                RTB.Text += "CTOS Version = " + CTOSVersionValue + Environment.NewLine;
+                                RTB.Text += "EMV Version = " + EMVVersion + Environment.NewLine;
+                                RTB.Text += "EMVExt Version = " + EMVExtVersionValue + Environment.NewLine;
+                                RTB.Text += "Flash Size(kbyte) = " + FlashSizeValue + Environment.NewLine;
+                                RTB.Text += "SRAM Size(kbyte) = " + SRAMSizeValue + Environment.NewLine;
                                 //RTB.Text += "=================" + Environment.NewLine;
-                                if (Start)
+
+                                //確認版本資訊是否有重複的異常狀況
+                                for (int i = 0; i < FrameWareValueArray.Length-1; i++)
+                                {
+                                    if (FrameWareValueArray[i] == FrameWareValueArray[i + 1])
+                                        { 
+                                        RTB.Text += "韌體版本異常!\n";
+                                        
+                                        Color_Lab.BackColor = Color.OrangeRed;
+                                        Status_Lab.Text = "NG";
+                                        initial();
+                                    }
+                                    if (i == FrameWareValueArray.Length - 2)
+                                    {
+                                        RTB.Text += ("自動檢測OK");
+                                     }
+                                }
+
+
+
+
+                                if (Start == true)
                                 {
                                     LoadStatus = 9;
                                     SendCMD(3);   //顯示完版本重開機
                                     Reboot_bool = true;
                                 }
-                                else if(Reboot_bool)//判斷是否經過燒錄完成的重啟過
+                                else if(Reboot_bool == true)//判斷是否經過燒錄完成的重啟過
                                 {                                   
 
                                     Start_BT.Enabled = false;
-                                    if (NoneReaderAppMode)//
+                                    if (NoneReaderAppMode == true)//
                                     {
                                         Reboot_bool = false;
                                         LoadStatus = 10;
@@ -1944,9 +1998,10 @@ LoadNew4.GetAPVersion();
                         }
                     case 81://詢問AP層版本
                         {
-                            int i = 0, j = 0, VersionErrTimes = 0;
+                            int UselessVersionWordsCounter = 0, VersionErrTimes = 0;
                             if (REC == true)
                             {
+                                REC = false;
                                 byte[] APVersionRecieved = RecievedQ.ToArray();
                                 //RTB.Text += "\n版本回傳值:"+BitConverter.ToString(APVersionRecieved);
                                 RecievedQ.Clear();
@@ -1969,11 +2024,11 @@ LoadNew4.GetAPVersion();
                                         /*獲取前3版本字*/
                                         foreach (byte words in APVersionRecieved)
                                         {
-                                            if (i > 4 && i < APVersionRecieved.Length - 2)
+                                            if (UselessVersionWordsCounter > 4 && UselessVersionWordsCounter < APVersionRecieved.Length - 2)
                                             {
                                                 RTB.Text += Convert.ToChar(words);
                                             }
-                                            i++;
+                                            UselessVersionWordsCounter++;
                                         }
 
                                     }
@@ -1987,8 +2042,9 @@ LoadNew4.GetAPVersion();
                                     RTB.Text += "版本讀取失敗Err" + Environment.NewLine;
                                    
                                 }
-                                if (JustGetAPVersion_bool)
+                                if (JustGetAPVersion_bool==true)
                                 {
+                                    RTB.Text += "\n***燒錄完成, 請確認版號***" + Environment.NewLine;
                                     JustGetAPVersion_bool = false;
                                     Thread.Sleep(1000);
                                     Serialport.BaudRate = 38400;                                    
@@ -2003,10 +2059,14 @@ LoadNew4.GetAPVersion();
                             }
                             else
                             {
-                                SendCMD(21);
+                                if (TimeOut_Counter % 2 == 0)
+                                { 
+                                    SendCMD(21); 
+                                }
+                                
                                 TimeOut_Counter++;
-                                Thread.Sleep(10000);
-                                if (TimeOut_Counter == 5)//原為30
+                                Thread.Sleep(1000);
+                                if (TimeOut_Counter == 5000)//原為30
                                 {                                    
                                     Color_Lab.BackColor = Color.OrangeRed;
                                     Status_Lab.Text = "NG";
@@ -2017,6 +2077,52 @@ LoadNew4.GetAPVersion();
 
                             break;
                         }
+                    case 82://詢問射頻IC_RC531序號
+                        {
+                            if (REC == true)
+                            {
+                                REC = false;
+                                byte[] RC531Data = RecievedQ.ToArray();
+                                int RealRC531No,CheckRC531=0;
+                                RecievedQ.Clear();
+                                if (RC531Data.Length == 14)
+                                {
+                                    for (int i = 5; i < 9; i++)
+                                    {
+                                        CheckRC531 ^= RC531Data[i];
+                                    }
+                                    if (CheckRC531 == 0)
+                                    {
+                                        RTB.Text += "RC531NoErr,TimeOut" + Environment.NewLine;
+                                        Color_Lab.BackColor = Color.OrangeRed;
+                                        Status_Lab.Text = "NG";
+                                        initial();
+                                    }
+
+                                    RTB.Text += "ReaderRC531No :";
+
+                                    //RC531轉碼
+                                    RealRC531No=BitConverter.ToInt32(RC531Data, 5);
+                                    RTB.Text += RealRC531No.ToString();
+                                    JustGetAPVersion_bool = true;
+                                    SendCMD(21);
+                                    LoadStatus = 81;
+                                }
+                            }
+                            else
+                            {
+                                SendCMD(22);
+
+                                TimeOut_Counter++;
+                                if (TimeOut_Counter == 2000)
+                                {
+                                    RTB.Text += "RC531NoErr,TimeOut" + Environment.NewLine;
+                                    initial();
+                                }
+                            }
+                            break;
+                        }
+
                     case 9:   //重開機後
                         {
                             if (REC)
@@ -2037,7 +2143,6 @@ LoadNew4.GetAPVersion();
                                         Start_BT.Text = "EStart";
                                     }
                                     Start_BT.Enabled = false;
-                                    GetVersion_BT.Enabled = false;
                                     Reboot_BT.Enabled = false;
                                     DisConnect_BT.Enabled = true;
                                     RTB.Text += "reset成功,將執行LoadNew";
@@ -2048,7 +2153,6 @@ LoadNew4.GetAPVersion();
                                 else if (Reboot_bool)//韌體版本讀取後重開完成,進入AP讀取程序
                                 {
                                     Reboot_BT.Enabled = false;
-                                    GetVersion_BT.Enabled = false;
                                     Reboot_bool = false;
                                     LoadStatus = 81;
                                     Serialport.BaudRate = APBuadRate;                                    
@@ -2134,7 +2238,6 @@ LoadNew4.GetAPVersion();
                                     Start = true;
                                     Start_BT.Text = "Stop";
                                     DisConnect_BT.Enabled = false;
-                                    GetVersion_BT.Enabled = false;
                                     Reboot_BT.Enabled = false;
                                     Color_Lab.BackColor = Color.Yellow;
                                     Status_Lab.Text = "燒錄中...";
@@ -2295,47 +2398,83 @@ LoadNew4.GetAPVersion();
                             if (REC == true)//顯示RTC時間
                             {
                                 byte[] ReaderRTCdata = RecievedQ.ToArray();
-
                                 
+
+
                                 REC = false;
                                 RecievedQ.Clear();
                                 
                                 if (ReaderRTCdata.Length == 14)
                                 {
-                                    RTB.Text += "ReaderRTC :";
-                                    for (int i = 5; i < 12; i++)
-                                    {
-                                        RTB.Text += Convert.ToString(ReaderRTCdata[i]) + " ";
-                                    }
-
+                                    
+                                    //RTB.Text += "ReaderRTC :";
+                                    //for (int i = 5; i < 12; i++)
+                                    //{
+                                    //    RTB.Text += Convert.ToString(ReaderRTCdata[i]) + " ";
+                                    //}
+                                    //取得第一個RTC
                                     if (RTCTestStatus == 0)
                                     {
+                                        ReaderRTC1 = ReaderRTCdata;
                                         RTCTestStatus++;
-                                        RTB.Text += "\n請等待數秒\n";
-                                        Thread.Sleep(5000);//等待數秒,確認RTC 正常運行
+                                        //RTB.Text += "\n請等待數秒\n";
+                                        Thread.Sleep(1000);//等待數秒,確認RTC 正常運行
                                         SendCMD(GetRTC);
-
                                     }
+                                    //比較RTC值是否正確
                                     else if (RTCTestStatus == 1)
                                     {
-                                        RTCTestStatus++;
-                                        LoadStatus = 20;
-                                        RTB.Text += "\n設定RTC\n";
-                                        SendCMD(SetRTC);
+                                        ReaderRTC2 = ReaderRTCdata;
+                                        if (ReaderRTC1[11] != ReaderRTC2[11])
+                                        {
+                                            RTB.Text += "RTC功能檢測OK";
+
+                                            RTCTestStatus++;
+                                            LoadStatus = 20;
+                                            RTB.Text += "\n設定RTC\n";
+                                            SendCMD(SetRTC);
+                                        }
+                                        else if (ReaderRTC1[10] != ReaderRTC2[10])
+                                        {
+                                            RTB.Text += "\nRTC功能檢測OK~\n";
+
+                                            RTCTestStatus++;
+                                            LoadStatus = 20;
+                                            RTB.Text += "\n設定RTC\n";
+                                            SendCMD(SetRTC);
+                                        }
+                                        else
+                                        {
+                                            RTB.Text += "\n!!!!RTC功能異常!!!\n";
+                                            Color_Lab.BackColor = Color.OrangeRed;
+                                            Status_Lab.Text = "NG";
+                                            initial();
+                                        }
+
                                     }
                                     else if (RTCTestStatus == 2)
                                     {
-                                        RTB.Text += "\nRTC測試完成\n";
-                                        RTB.Text += "***可更換下一台卡機***" + Environment.NewLine;
                                         RTCTestStatus = 0;
-                                        Thread.Sleep(5000);//給時間確認RTC
-                                        Serialport.BaudRate = 38400;
-                                        LoadStatus = 0;
+                                        RTB.Text += "ReaderRTC :";
+                                        for (int i = 5; i < 12; i++)
+                                        {
+                                            RTB.Text += Convert.ToString(ReaderRTCdata[i]) + " ";
+                                        }
+                                        if (CheckRC531NoMode == true)
+                                        {
+                                            SendCMD(22);
+                                            LoadStatus = 82;
+                                        }
+                                        else
+                                        {
+                                            JustGetAPVersion_bool = true;
+                                            SendCMD(21);
+                                            LoadStatus = 81;
+                                        }
+
+                                      
                                     }
-
                                 }
-                                 
-
                             }
                             else
                             {
@@ -2407,6 +2546,10 @@ LoadNew4.GetAPVersion();
                             if (LoadStatus == 0 && (BitConverter.ToString(RecievedQ.ToArray()) == BitConverter.ToString(LoadNewReturn)))
                             {
                                 RecievedQ.Clear();
+                                REC = true;
+                            }
+                            else if (LoadStatus == 82 && RecievedQ.Count > 12)
+                            {
                                 REC = true;
                             }
                             else if (LoadStatus == 20 && RecievedQ.Count > 4)
@@ -2513,8 +2656,6 @@ LoadNew4.GetAPVersion();
 
          */
 
-
-
         private void SendCMD(int Code)     //傳送資料指令
         {
             byte[] CMD= { };
@@ -2544,6 +2685,12 @@ LoadNew4.GetAPVersion();
                     {
                         byte[] GetAPVisionCMD = { 0xEA, 0x01, 0x00, 0x00, 0x01, 0x00, 0x90, 0x00};
                         CMD = GetAPVisionCMD;
+                        break;
+                    }
+                case 22://GetRC531No.
+                    {
+                        byte[] GetRC531NoCMD = { 0xEA, 0x04, 0x01, 0x00, 0x06, 0x84, 0x0A, 0x00, 0x00, 0x04, 0x8A, 0x90, 0x00 };
+                        CMD = GetRC531NoCMD;
                         break;
                     }
                 case 3:     //RebootReader
@@ -2723,6 +2870,8 @@ LoadNew4.GetAPVersion();
                         SetRCT[11] = Convert.ToByte(Nowsecond);
 
                         CMD = SetRCT;
+
+
                         break;
                     }
 
@@ -2732,10 +2881,11 @@ LoadNew4.GetAPVersion();
             {               
                 Serialport.Write(CMD, 0, CMD.Length);
 
-                if (LoadStatus != 81)
-                { 
-                    TimeOut_Counter = 0; 
-                }
+                //待確認
+                //if (LoadStatus != 81)
+                //{ 
+                //    TimeOut_Counter = 0; 
+                //}
 
                 
             }

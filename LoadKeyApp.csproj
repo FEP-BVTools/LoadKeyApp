@@ -7,7 +7,7 @@
     <ProjectGuid>{BFA1BF72-8152-409A-9931-0559B1E72D7B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>LoadKeyApp</RootNamespace>
-    <AssemblyName>FEP_TS2000_Writer_V1.4.19</AssemblyName>
+    <AssemblyName>FEP_TS2000_Writer_V1.4_GetRC531</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

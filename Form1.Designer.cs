@@ -86,6 +86,7 @@
             this.EraseMode = new System.Windows.Forms.ToolStripMenuItem();
             this.AutoErase_Mode = new System.Windows.Forms.ToolStripMenuItem();
             this.RTCtestMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.GetRC531No = new System.Windows.Forms.ToolStripMenuItem();
             this.速率設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReaderApBaudSet = new System.Windows.Forms.ToolStripMenuItem();
             this.BaudSetTo57600 = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,7 +126,6 @@
             this.TreadReadyStatusCount_Lab = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.AllAPReboot_Btn = new System.Windows.Forms.Button();
-            this.GetRC531No = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -736,6 +736,13 @@
             this.RTCtestMode.Text = "RTC測試模式";
             this.RTCtestMode.Click += new System.EventHandler(this.卡機時間確認ToolStripMenuItem_Click);
             // 
+            // GetRC531No
+            // 
+            this.GetRC531No.Name = "GetRC531No";
+            this.GetRC531No.Size = new System.Drawing.Size(180, 22);
+            this.GetRC531No.Text = "射頻IC序號讀取";
+            this.GetRC531No.Click += new System.EventHandler(this.射頻IC序號讀取ToolStripMenuItem_Click);
+            // 
             // 速率設定ToolStripMenuItem
             // 
             this.速率設定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -811,7 +818,7 @@
             this.Erase4,
             this.AllErase});
             this.eraseToolStripMenuItem.Name = "eraseToolStripMenuItem";
-            this.eraseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eraseToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.eraseToolStripMenuItem.Text = "Erase";
             this.eraseToolStripMenuItem.Visible = false;
             // 
@@ -858,7 +865,7 @@
             this.AP_Reboot_3,
             this.AP_Reboot_4});
             this.aP層重啟ToolStripMenuItem.Name = "aP層重啟ToolStripMenuItem";
-            this.aP層重啟ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aP層重啟ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.aP層重啟ToolStripMenuItem.Text = "AP層重啟";
             // 
             // AP_Reboot_1
@@ -897,7 +904,7 @@
             this.APVersionGet3,
             this.APVersionGet4});
             this.readerAP版本ToolStripMenuItem.Name = "readerAP版本ToolStripMenuItem";
-            this.readerAP版本ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.readerAP版本ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.readerAP版本ToolStripMenuItem.Text = "ReaderAP版本";
             // 
             // APVersionGet1
@@ -1117,13 +1124,6 @@
             this.AllAPReboot_Btn.Text = "AllAPReboot";
             this.AllAPReboot_Btn.UseVisualStyleBackColor = true;
             this.AllAPReboot_Btn.Click += new System.EventHandler(this.AllAPReboot_Btn_Click);
-            // 
-            // GetRC531No
-            // 
-            this.GetRC531No.Name = "GetRC531No";
-            this.GetRC531No.Size = new System.Drawing.Size(180, 22);
-            this.GetRC531No.Text = "射頻IC序號讀取";
-            this.GetRC531No.Click += new System.EventHandler(this.射頻IC序號讀取ToolStripMenuItem_Click);
             // 
             // Form1
             // 

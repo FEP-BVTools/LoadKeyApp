@@ -35,7 +35,7 @@ namespace LoadKeyApp
         public VersionChange VersionChangeWindow = new VersionChange();
         
         //版本變更參數
-        private string TitleVersion = "FEP TS2000 Writer_V1.4.19",ModeStatus_Str= "含AP模式",BurnCodeRate_Str="、燒錄鮑率:115200", APBaudRate_Str = "、AP鮑率:57600", AutoErase_Str = "";
+        private string TitleVersion = "FEP TS2000 Writer_V1.4_GetRC531",ModeStatus_Str= "含AP模式",BurnCodeRate_Str="、燒錄鮑率:115200", APBaudRate_Str = "、AP鮑率:57600", AutoErase_Str = "";
 
         private bool EraseMode_bool = false,AutoEraseMode_bool=false;
 
@@ -83,7 +83,7 @@ namespace LoadKeyApp
             RTCtestMode.PerformClick();
             AutoErase_Mode.PerformClick();
             NoneAppMode.PerformClick();
-
+            GetRC531No.PerformClick();
         }
 
         //COMPort下拉觸發事件
@@ -1525,11 +1525,12 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 if(TimeOut_Counter==2000)
                                 {
+                                    initial();
                                     RTB.Text += "TimeOut" + Environment.NewLine;
                                     Color_Lab.BackColor = Color.OrangeRed;
                                     Status_Lab.Text = "BuadRate設定NG";
                                     TimeOut_Counter = 0;
-                                    initial();
+                                    
                                 }
                             }
                             break;
@@ -1738,8 +1739,9 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 if (TimeOut_Counter == 10000)//原500
                                 {
-                                    RTB.Text += "TimeOut" + Environment.NewLine;
                                     initial();
+                                    RTB.Text += "TimeOut" + Environment.NewLine;
+                                    
                                 }
                             }
                             break;
@@ -1758,8 +1760,9 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 if (TimeOut_Counter == 20000)//原500
                                 {
-                                    RTB.Text += "TimeOut" + Environment.NewLine;
                                     initial();
+                                    RTB.Text += "TimeOut" + Environment.NewLine;
+                                    
                                 }
                             }
                             break;
@@ -1787,8 +1790,9 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 if (TimeOut_Counter == 20000)////原500
                                 {
-                                    RTB.Text += "TimeOut" + Environment.NewLine;
                                     initial();
+                                    RTB.Text += "TimeOut" + Environment.NewLine;
+                                    
                                 }
                             }
                             break;
@@ -1855,8 +1859,9 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 if (TimeOut_Counter == 20000)
                                 {
-                                    RTB.Text += "TimeOut" + Environment.NewLine;
                                     initial();
+                                    RTB.Text += "TimeOut" + Environment.NewLine;
+                                    
                                 }
                             }
                             break;
@@ -1896,12 +1901,13 @@ LoadNew4.GetAPVersion();
                                 for (int i = 0; i < FrameWareValueArray.Length-1; i++)
                                 {
                                     if (FrameWareValueArray[i] == FrameWareValueArray[i + 1])
-                                        { 
+                                        {
+
+                                        initial();
                                         RTB.Text += "韌體版本異常!\n";
-                                        
                                         Color_Lab.BackColor = Color.OrangeRed;
                                         Status_Lab.Text = "NG";
-                                        initial();
+                                        
                                     }
                                     if (i == FrameWareValueArray.Length - 2)
                                     {
@@ -2067,11 +2073,12 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 Thread.Sleep(1000);
                                 if (TimeOut_Counter == 5000)//原為30
-                                {                                    
+                                {
+                                    initial();
                                     Color_Lab.BackColor = Color.OrangeRed;
                                     Status_Lab.Text = "NG";
                                     RTB.Text += "!!!AP版本讀取失敗!!!" + Environment.NewLine;
-                                    initial();
+                                    
                                 }
                             }
 
@@ -2093,10 +2100,11 @@ LoadNew4.GetAPVersion();
                                     }
                                     if (CheckRC531 == 0)
                                     {
+                                        initial();
                                         RTB.Text += "RC531NoErr,TimeOut" + Environment.NewLine;
                                         Color_Lab.BackColor = Color.OrangeRed;
                                         Status_Lab.Text = "NG";
-                                        initial();
+                                        
                                     }
 
                                     RTB.Text += "ReaderRC531No :";
@@ -2108,6 +2116,19 @@ LoadNew4.GetAPVersion();
                                     SendCMD(21);
                                     LoadStatus = 81;
                                 }
+                                else
+                                {
+                                    SendCMD(22);
+
+                                    TimeOut_Counter++;
+                                    if (TimeOut_Counter == 2000)
+                                    {
+                                        initial();
+                                        RTB.Text += "RC531NoErr,TimeOut" + Environment.NewLine;
+                                        
+                                    }
+                                }
+
                             }
                             else
                             {
@@ -2116,8 +2137,9 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 if (TimeOut_Counter == 2000)
                                 {
-                                    RTB.Text += "RC531NoErr,TimeOut" + Environment.NewLine;
                                     initial();
+                                    RTB.Text += "RC531NoErr,TimeOut" + Environment.NewLine;
+                                    
                                 }
                             }
                             break;
@@ -2190,8 +2212,9 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 if (TimeOut_Counter == 2000)
                                 {
-                                    RTB.Text += "Reboot,TimeOut" + Environment.NewLine;
                                     initial();
+                                    RTB.Text += "Reboot,TimeOut" + Environment.NewLine;
+                                    
                                 }
                             }
                             break;
@@ -2375,10 +2398,10 @@ LoadNew4.GetAPVersion();
                                 TimeOut_Counter++;
                                 SendCMD(81);//Ver 1.4.17
 
-                                if (TimeOut_Counter == 300)
+                                if (TimeOut_Counter == 5000)
                                 {
                                     RTB.Text += "Freeze 失敗_Time out";                                    
-                                    Thread.Sleep(10000);
+                                    Thread.Sleep(1000);
                                     Start_BT.Enabled = false;                                    
                                     LoadStatus = 0;
                                     //initial();
@@ -2445,10 +2468,11 @@ LoadNew4.GetAPVersion();
                                         }
                                         else
                                         {
+                                            initial();
                                             RTB.Text += "\n!!!!RTC功能異常!!!\n";
                                             Color_Lab.BackColor = Color.OrangeRed;
                                             Status_Lab.Text = "NG";
-                                            initial();
+                                            
                                         }
 
                                     }
@@ -2483,10 +2507,11 @@ LoadNew4.GetAPVersion();
                                 Thread.Sleep(1000);
                                 if (TimeOut_Counter == 5)//原為30
                                 {
+                                    initial();
                                     Color_Lab.BackColor = Color.OrangeRed;
                                     Status_Lab.Text = "NG";
                                     RTB.Text += "!!!RTC讀取失敗!!!" + Environment.NewLine;
-                                    initial();
+                                    
                                 }
                             }
                             break;
@@ -2512,10 +2537,11 @@ LoadNew4.GetAPVersion();
                                 Thread.Sleep(10000);
                                 if (TimeOut_Counter == 5)//原為30
                                 {
+                                    initial();
                                     Color_Lab.BackColor = Color.OrangeRed;
                                     Status_Lab.Text = "NG";
                                     RTB.Text += "!!!RTC設定失敗!!!" + Environment.NewLine;
-                                    initial();
+                                    
                                 }
                             }
 
@@ -2626,10 +2652,12 @@ LoadNew4.GetAPVersion();
                }
                catch
                 {
-                    RTB.Text += "序列埠異常" + Environment.NewLine;
-                    
                     SendCMD(3);
                     initial();
+                    RTB.Text += "序列埠異常" + Environment.NewLine;
+                    
+                    
+                    
                 }
                 Thread.Sleep(5);
             }
@@ -2890,9 +2918,10 @@ LoadNew4.GetAPVersion();
                 
             }
             catch  //comport斷線 回歸初始
-            {                
-                RTB.Text += "CMD失敗" + Environment.NewLine;                
+            {
                 initial();
+                RTB.Text += "CMD失敗" + Environment.NewLine;                
+                
             }
         }
     }
